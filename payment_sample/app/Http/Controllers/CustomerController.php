@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
-use Illuminate\Support\Facades\Log;
 
 class CustomerController extends Controller
 {
@@ -21,7 +20,6 @@ class CustomerController extends Controller
 
     public function createPost(Request $request)
     {
-        Log::debug('createPost ' . $request->user()->id);
         $customer = new Customer();
         $customer->name = $request->name;
         $customer->email = $request->email;

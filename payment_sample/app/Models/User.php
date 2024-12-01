@@ -64,4 +64,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Customer::class);
     }
+
+    /**
+     * Get the product record associated with the user.
+     */
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
