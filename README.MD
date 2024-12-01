@@ -20,4 +20,4 @@ Ini adalah contoh implementasi payment gateway dalam bentuk yang paling sederhan
 - Product_ID
 - Total_Product
 - Total_Payment
-- Date
+- Payment_Date

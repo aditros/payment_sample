@@ -44,6 +44,7 @@
                                         <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>
                                     </form>
                                     </button>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

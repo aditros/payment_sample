@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\User;
 
 class CustomerController extends Controller
 {
@@ -52,5 +53,30 @@ class CustomerController extends Controller
         $customer = Customer::find($id);
         $customer->delete();
         return redirect()->route('customer');
+    }
+
+    public function restAllCustomers(Request $request)
+    {
+        $api_token = $request->get('token', '');
+        $user = User::where('api_token', $api_token)->first();
+        if (!$user) {
+            return response()->json(['success' => false, 'message' => 'Invalid token']);
+        }
+        $customers = $user->customers;
+        return response()->json(['success' => true, 'customers' => $customers]);
+    }
+
+    public function restCustomer(Request $request, int $id)
+    {
+        $api_token = $request->get('token', '');
+        $user = User::where('api_token', $api_token)->first();
+        if (!$user) {
+            return response()->json(['success' => false, 'message' => 'Invalid token']);
+        }
+        $customer = $user->customers->find($id);
+        if (!$customer) {
+            return response()->json(['success' => false, 'message' => 'Invalid customer']);
+        }
+        return response()->json(['success' => true, 'customer' => $customer]);
     }
 }
