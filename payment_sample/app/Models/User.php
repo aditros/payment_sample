@@ -56,4 +56,12 @@ class User extends Authenticatable
     {
         return hash('sha256', $this->email . time());
     }
+
+    /**
+     * Get the customer record associated with the user.
+     */
+    public function customers()
+    {
+        return $this->hasMany(Customer::class);
+    }
 }
