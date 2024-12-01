@@ -37,6 +37,15 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
+    public function updateApiToken(Request $request): RedirectResponse
+    {
+        $request->user()->update([
+            'api_token' => $request->user()->generateApiToken(),
+        ]);
+
+        return Redirect::route('profile.edit')->with('status', 'api-token-updated');
+    }
+
     /**
      * Delete the user's account.
      */

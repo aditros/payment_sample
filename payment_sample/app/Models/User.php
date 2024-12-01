@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'api_token',
     ];
 
     /**
@@ -44,5 +45,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Generate a new API token for the user.
+     *
+     * @return string
+     */
+    public function generateApiToken(): string
+    {
+        return hash('sha256', $this->email . time());
     }
 }
